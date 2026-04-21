@@ -1,0 +1,160 @@
+.section {
+  padding: 96px 24px;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accent-crimson);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.titleAccent {
+  color: var(--accent-crimson);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeInUp 0.6s ease both;
+  background: none;
+  padding: 0;
+}
+
+.cardGlass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  position: relative;
+}
+
+.card.hovered .cardGlass {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-crimson);
+  transform: translateY(-6px);
+}
+
+.imgWrap {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+.card.hovered .img {
+  transform: scale(1.08);
+  animation: none;
+}
+
+.cardContent {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+
+.card.hovered .cardName {
+  color: var(--text-primary);
+}
+
+.cardPrice {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: color 0.3s, transform 0.3s;
+  transform: translateY(4px);
+  opacity: 0;
+}
+
+.card.hovered .cardPrice {
+  color: var(--text-secondary);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.priceVal {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.borderTrace {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.card.hovered .borderTrace {
+  border-color: var(--accent-crimson);
+  box-shadow: inset 0 0 20px rgba(255, 0, 60, 0.08), 0 0 16px rgba(255, 0, 60, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .section { padding: 64px 16px; }
+}
